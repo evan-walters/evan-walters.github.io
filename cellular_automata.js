@@ -1,6 +1,7 @@
 var WIDTH = 200;
 var LENGTH = 100;
 var DIM = 3;
+var SPEED = 10;
 
 var rule90 = {
   "111" : "0",
@@ -17,6 +18,15 @@ function onDocumentReady() {
   runCA();
 };
 
+function runCA() {
+  // setup and draw starting state
+  var currentState = initCA();
+  drawState(currentState, 0);
+
+  // evolve world
+  evolve(currentState, 0);
+}
+
 function initCA() {
   let initialState = '';
   for (i = 0; i < WIDTH; i++) {
@@ -25,15 +35,6 @@ function initCA() {
   }
   return initialState;
 }
-
-function runCA() {
-  // setup and draw starting state
-  var currentState = initCA();
-  drawState(currentState, 0);
-
-  // evolve world
-  evolve(currentState, 0);
-};
 
 function evolve(currentState, timeStep) {
   // update and draw state
@@ -45,15 +46,11 @@ function evolve(currentState, timeStep) {
     setTimeout(
       function() {
         evolve(currentState, timeStep + 1);
-      }, 50);
-  } else {
-    console.log('fin');
+      }, SPEED);
   }
-
 }
 
 function updateState(state) {
-  console.log(state);
   let newState = "";
   let paddedState = state.slice(-1) + state + state.slice(0, 1);
 
@@ -63,7 +60,7 @@ function updateState(state) {
   }
 
   return newState;
-};
+}
 
 function drawState(state, timeStep) {
   let canvas = document.querySelector("canvas");
@@ -77,4 +74,4 @@ function drawState(state, timeStep) {
     }
     context.fillRect(cellIndex * DIM, timeStep * DIM, DIM, DIM);
   }
-};
+}
