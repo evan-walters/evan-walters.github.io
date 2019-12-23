@@ -19,12 +19,12 @@ function onDocumentReady() {
 };
 
 function runCA() {
-  // setup and draw starting state
-  var currentState = initCA();
-  drawState(currentState, 0);
+  // init and draw starting state
+  let state = initCA();
+  draw(state, 0);
 
   // evolve world
-  evolve(currentState, 0);
+  evolve(state, 0);
 }
 
 function initCA() {
@@ -38,19 +38,19 @@ function initCA() {
 
 function evolve(currentState, timeStep) {
   // update and draw state
-  var currentState = updateState(currentState);
-  drawState(currentState, timeStep);
+  let state = update(currentState);
+  draw(state, timeStep);
 
   // evolve
   if (timeStep < LENGTH) {
     setTimeout(
       function() {
-        evolve(currentState, timeStep + 1);
+        evolve(state, timeStep + 1);
       }, SPEED);
   }
 }
 
-function updateState(state) {
+function update(state) {
   let newState = "";
   let paddedState = state.slice(-1) + state + state.slice(0, 1);
 
@@ -62,7 +62,7 @@ function updateState(state) {
   return newState;
 }
 
-function drawState(state, timeStep) {
+function draw(state, timeStep) {
   let canvas = document.querySelector("canvas");
   let context = canvas.getContext("2d");
 
