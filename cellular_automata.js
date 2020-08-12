@@ -1,9 +1,9 @@
-var WIDTH = 200;
-var LENGTH = 100;
-var DIM = 3;
-var SPEED = 10;
+const WIDTH = 200;
+const LENGTH = 100;
+const DIM = 3;
+const SPEED = 10;
 
-var rule90 = {
+const rule90 = {
   "111" : "0",
   "110" : "1",
   "101" : "0",
