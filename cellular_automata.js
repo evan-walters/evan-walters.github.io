@@ -1,6 +1,6 @@
 const WIDTH = 200;
 const LENGTH = 100;
-const DIM = 3;
+const DIM = 31;
 const SPEED = 10;
 
 const rule90 = {
